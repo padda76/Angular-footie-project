@@ -1,0 +1,20 @@
+h2{
+    padding-bottom:20px;
+}
+
+.btn{
+    width: 280px;
+    cursor:pointer;
+}
+
+#yearSelect{
+    width:140px;
+}
+
+#yearPicker{
+    width: 220px;
+}
+
+#close_table:hover{
+    cursor:pointer;
+}

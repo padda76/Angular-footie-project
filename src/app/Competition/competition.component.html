@@ -1,0 +1,59 @@
+<div class="row">
+    <div class="col-sm-3">
+        <div class="container">
+            <h4 class="text-info">Competitions {{currentYear}}</h4>
+            <div class="btn-group btn-group-sm btn-group-vertical" role="group" aria-label="alternative">
+                <div *ngFor="let comp of competitions">
+                    <button type="button" class="btn btn-info" (click)="getLeagueTable(comp._links.leagueTable.href)">{{comp.caption}}</button>
+                </div>
+            </div>
+            <div class="btn-group btn-group-inline">
+                <select class="selectpicker" [(ngModel)]="year" id="year" name="year">
+                    <option>2017</option>
+                    <option>2016</option>
+                    <option>2015</option>
+                </select>
+                <button id="yearPicker" type="button" class="btn btn-info" (click)="getAllCompetitionsForYear()">Give me season {{year}}</button>
+
+            </div>
+            <span class="text-information">Leaguetables available only for 2016</span>
+        </div>
+    </div>
+
+<div class="col-sm-9">
+    <div id="lTable" class="container" *ngIf="leagueTable">
+        <h2 class="text-center text-info">{{leagueTable.leagueCaption}}</h2>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Club</th>
+                    <th>Played</th>
+                    <th>Wins</th>
+                    <th>Draw</th>
+                    <th>Losses</th>
+                    <th>GF</th>
+                    <th>GA</th>
+                    <th>+/-</th>
+                    <th>Points</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="table" *ngFor="let teams of leagueTable.standing">
+                    <td>{{teams.position}}</td>
+                    <td>{{teams.teamName}}</td>
+                    <td>{{teams.playedGames}}</td>
+                    <td>{{teams.wins}}</td>
+                    <td>{{teams.draws}}</td>
+                    <td>{{teams.losses}}</td>
+                    <td>{{teams.goals}}</td>
+                    <td>{{teams.goalsAgainst}}</td>
+                    <td>{{teams.goalDifference}}</td>
+                    <td>{{teams.points}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div id="close_table" class="text-center" (click)="chooseNewCompetition()">Clear table</div>
+    </div>
+</div>
+</div>
